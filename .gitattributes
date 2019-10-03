@@ -1,0 +1,3 @@
+*.mlx -crlf -diff -merge
+*.gtg -crlf -diff -merge
+*.pdf -crlf -diff -merge
