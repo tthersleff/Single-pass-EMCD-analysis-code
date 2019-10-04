@@ -186,8 +186,21 @@ if nargout == 3
     out.res = res;
     out.sse = sse;
     out.std = std(res(preBegin:postEnd));
-    out.SNRL3 = 10*log10(norm(EMCDsig(L3Begin:L3End)) ./ norm(res(L3Begin:L3End)));
-    out.SNRL2 = 10*log10(norm(EMCDsig(L2Begin:L2End)) ./ norm(res(L2Begin:L2End)));
+    % Error in v1 of paper.  dB units should be 20*log10(...) rather than
+    % 10*log10(...).  But we decided to use the norm ratio method instead,
+    % as it is easier to interpret in terms of 5sigma significance
+    
+    % Original:
+%     out.SNRL3 = 10*log10(norm(EMCDsig(L3Begin:L3End)) ./ norm(res(L3Begin:L3End)));
+%     out.SNRL2 = 10*log10(norm(EMCDsig(L2Begin:L2End)) ./ norm(res(L2Begin:L2End)));
+
+    % Correct for dB scale:
+%     out.SNRL3 = 20*log10(norm(EMCDsig(L3Begin:L3End)) ./ norm(res(L3Begin:L3End)));
+%     out.SNRL2 = 20*log10(norm(EMCDsig(L2Begin:L2End)) ./ norm(res(L2Begin:L2End)));
+
+    % Ratio scale
+    out.SNRL3 = norm(EMCDsig(L3Begin:L3End)) ./ norm(res(L3Begin:L3End));
+    out.SNRL2 = norm(EMCDsig(L2Begin:L2End)) ./ norm(res(L2Begin:L2End));
 end
 
 end

@@ -79,10 +79,10 @@ legend;
 set(gca, 'xlim', xlim, 'FontSize', 14);
 h.ax(3).Tag = 'EMCD Plot';
 xlabel('Energy [eV]');
-ylabel('Intensity [percent of L_3]');
+ylabel('Intensity [fraction of L_3]');
 grid on;
 % title(sprintf('Residuals, m_L/m_S = %0.4f', fstruct.mLmS));
-title(sprintf('SNR L_3 = %2.2f dB, L_2 = %2.2f dB', fstruct.SNRL3, fstruct.SNRL2));
+title(sprintf('SNR L_3 = %2.2f, L_2 = %2.2f', fstruct.SNRL3, fstruct.SNRL2));
 
 %% Plot cumulative sum
 h.ax(4) = subplot(2, 2, 4);
